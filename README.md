@@ -69,7 +69,7 @@ If your app is an app which uses web views you would like to use adjust tracking
 
 There are example apps inside the [`examples` directory][examples] for [`iOS (Objective-C)`][example-ios-objc], [`iOS (Swift)`][example-ios-swift], [`tvOS`][example-tvos] and [`Apple Watch`][example-iwatch]. You can open any of these Xcode projects to see an example of how the adjust SDK can be integrated.
 
-##<a id="getting-started"></a>Getting Started
+## <a id="getting-started"></a> Getting Started
 
 We will describe the steps to integrate the adjust SDK into your iOS project. We are going to assume that you are using Xcode for your iOS development.
 
@@ -291,6 +291,10 @@ If you want to track in-app purchases, please make sure to call `trackEvent` aft
 ### <a id="iap-verification"></a>In-App Purchase verification
 
 If you want to check the validity of In-App Purchases made in your app using Purchase Verification, adjust's server side receipt verification tool, then check out our iOS purchase SDK and read more about it [here][ios-purchase-verification].
+
+### <a id="event-parameters"></a>Event parameters
+
+In addition to the data points that Adjust collects [by default](https://partners.adjust.com/placeholders/), you can set up your SDK to 
 
 ### <a id="callback-parameters"></a>Callback parameters
 
