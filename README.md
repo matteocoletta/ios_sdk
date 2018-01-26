@@ -4,17 +4,32 @@ This is the iOS SDK of adjust™. You can read more about adjust™ at [adjust.c
 
 If your app is an app which uses web views you would like to use adjust tracking from Javascript code, please consult our [iOS web views SDK guide][ios-web-views-guide].
 
-## Table of contents
+---
+
+### Early Steps
 
 * [Example apps](#example-apps)
-* [Basic integration](#basic-integration)
+* [Getting Started](#getting-started)
    * [Add the SDK to your project](#sdk-add)
    * [Add iOS frameworks](#sdk-frameworks)
    * [Integrate the SDK into your app](#sdk-integrate)
    * [Basic setup](#basic-setup)
    * [Adjust logging](#adjust-logging)
    * [Build your app](#build-the-app)
-* [Additional features](#additional-features)
+
+### Must Have
+
+* [SDK signature](#sdk-signature)
+* [Deep linking](#deeplinking)
+	* [Apple Universal Links](#apple-universal-links)
+	* [Deep linking on iOS 8 and earlier](#deeplinking-setup-old)
+	* [Deferred deep linking scenario](#deeplinking-deferred)
+	* [Reattribution via deep links](#deeplinking-reattribution)
+* [Push token](#push-token)
+
+
+### Additional Features
+
    * [Event tracking](#event-tracking)
       * [Revenue tracking](#revenue-tracking)
       * [Revenue deduplication](#revenue-deduplication)
@@ -24,27 +39,21 @@ If your app is an app which uses web views you would like to use adjust tracking
    * [Session parameters](#session-parameters)
       * [Session callback parameters](#session-callback-parameters)
       * [Session partner parameters](#session-partner-parameters)
-      * [Delay start](#delay-start)
    * [Attribution callback](#attribution-callback)
+   * [User attribution](#user-attribution)
    * [Event and session callbacks](#event-session-callbacks)
-   * [Disable tracking](#disable-tracking)
-   * [Offline mode](#offline-mode)
-   * [Event buffering](#event-buffering)
-   * [SDK signature](#sdk-signature)
-   * [Background tracking](#background-tracking)
    * [Device IDs](#device-ids)
       * [iOS Advertising Identifier](#di-idfa)
       * [Adjust device identifier](#di-adid)
-   * [User attribution](#user-attribution)
-   * [Push token](#push-token)
    * [Pre-installed trackers](#pre-installed-trackers)
-   * [Deep linking](#deeplinking)
-      * [Standard deep linking scenario](#deeplinking-standard)
-      * [Deep linking on iOS 8 and earlier](#deeplinking-setup-old)
-      * [Deep linking on iOS 9 and later](#deeplinking-setup-new)
-      * [Deferred deep linking scenario](#deeplinking-deferred)
-      * [Reattribution via deep links](#deeplinking-reattribution)
-* [Troubleshooting](#troubleshooting)
+   * [Delay start](#delay-start)
+   * [Event buffering](#event-buffering)
+   * [Background tracking](#background-tracking)
+   * [Disable tracking](#disable-tracking)
+   * [Offline mode](#offline-mode)
+
+### Troubleshooting
+
    * [Issues with delayed SDK initialisation](#ts-delayed-init)
    * [I'm seeing "Adjust requires ARC" error](#ts-arc)
    * [I'm seeing "\[UIDevice adjTrackingEnabled\]: unrecognized selector sent to instance" error](#ts-categories)
@@ -54,11 +63,13 @@ If your app is an app which uses web views you would like to use adjust tracking
    * [I'm seeing wrong revenue data in the adjust dashboard](#ts-wrong-revenue-amount)
 * [License](#license)
 
+---
+
 ## <a id="example-apps"></a>Example apps
 
 There are example apps inside the [`examples` directory][examples] for [`iOS (Objective-C)`][example-ios-objc], [`iOS (Swift)`][example-ios-swift], [`tvOS`][example-tvos] and [`Apple Watch`][example-iwatch]. You can open any of these Xcode projects to see an example of how the adjust SDK can be integrated.
 
-## <a id="basic-integration">Basic integration
+##<a id="getting-started"></a>Getting Started
 
 We will describe the steps to integrate the adjust SDK into your iOS project. We are going to assume that you are using Xcode for your iOS development.
 
@@ -176,6 +187,8 @@ NSString *environment = ADJEnvironmentProduction;
 
 We use this environment to distinguish between real traffic and test traffic from test devices. It is very important that you keep this value meaningful at all times! This is especially important if you are tracking revenue.
 
+
+
 ### <a id="adjust-logging"></a>Adjust logging
 
 You can increase or decrease the amount of logs that you see during testing by calling `setLogLevel:` on your `ADJConfig` instance with one of the following parameters:
@@ -215,7 +228,7 @@ Build and run your app. If the build succeeds, you should carefully read the SDK
 
 ![][run]
 
-## <a id="additional-feature">Additional features
+## <a id="additional-feature"></a>Additional features
 
 Once you integrate the adjust SDK into your project, you can take advantage of the following features.
 
@@ -633,7 +646,7 @@ After this has been set up, your app will be opened after you click the adjust t
 
 With this setup, you have successfully set up deep linking handling for iOS devices with iOS 8 and earlier versions.
 
-### <a id="deeplinking-setup-new"></a>Deep linking on iOS 9 and later
+### <a id="apple-universal-links"></a>Apple Universal Links
 
 In order to set deep linking support for iOS 9 and later devices, you need to enable your app to handle Apple universal links. To find out more about universal links and how their setup looks like, you can check [here][universal-links].
 
@@ -703,46 +716,6 @@ Follow the same steps and implement the following delegate callback function for
 The callback function will be called after the SDK receives a deffered deep link from our server and before opening it. Within the callback function you have access to the deep link. The returned boolean value determines if the SDK will launch the deep link. You could, for example, not allow the SDK to open the deep link at the current moment, save it, and open it yourself later.
 
 If this callback is not implemented, **the adjust SDK will always try to open the deep link by default**.
-
-### <a id="deeplinking-reattribution"></a>Reattribution via deep links
-
-Adjust enables you to run re-engagement campaigns with usage of deep links. For more information on how to do that, please check our [official docs][reattribution-with-deeplinks].
-
-If you are using this feature, in order for your user to be properly reattributed, you need to make one additional call to the adjust SDK in your app.
-
-Once you have received deep link content information in your app, add a call to the `appWillOpenUrl` method. By making this call, the adjust SDK will try to find if there is any new attribution info inside of the deep link and if any, it will be sent to the adjust backend. If your user should be reattributed due to a click on the adjust tracker URL with deep link content in it, you will see the [attribution callback](#attribution-callback) in your app being triggered with new attribution info for this user.
-
-The call to `appWillOpenUrl` should be done like this to support deep linking reattributions in all iOS versions:
-
-```objc
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    // url object contains your deep link content
-    
-    [Adjust appWillOpenUrl:url];
-
-    // Apply your logic to determine the return value of this method
-    return YES;
-    // or
-    // return NO;
-}
-```
-
-``` objc
-- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity
- restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
-    if ([[userActivity activityType] isEqualToString:NSUserActivityTypeBrowsingWeb]) {
-        NSURL url = [userActivity webpageURL];
-
-        [Adjust appWillOpenUrl:url];
-    }
-
-    // Apply your logic to determine the return value of this method
-    return YES;
-    // or
-    // return NO;
-}
-```
 
 ## <a id="troubleshooting"></a>Troubleshooting
 
