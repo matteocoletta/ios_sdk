@@ -21,7 +21,7 @@ If your app is an app which uses web views you would like to use adjust tracking
 
 * [SDK signature](#sdk-signature)
 * [Deep linking](#deeplinking)
-	* [Apple Universal Links](#apple-universal-links)
+	* [Apple Links](#apple-universal-links)
 	* [Deep linking on iOS 8 and earlier](#deeplinking-setup-old)
 	* [Deferred deep linking scenario](#deeplinking-deferred)
 	* [Reattribution via deep links](#deeplinking-reattribution)
@@ -908,9 +908,12 @@ If you are seing any value in the dashboard other than what you expected to be t
 [event-tracking]:    https://docs.adjust.com/en/event-tracking
 [example-iwatch]:    http://github.com/adjust/ios_sdk/tree/master/examples/AdjustExample-iWatch
 [callbacks-guide]:   https://docs.adjust.com/en/callbacks
-[universal-links]:   https://developer.apple.com/library/ios/documentation/General/Conceptual/AppSearch/UniversalLinks.html
+[universal-links]:   https://developer.apple.com/library/ios/documentation/General/Conceptual/AppSearch/
 
-[special-partners]:     https://docs.adjust.com/en/special-partners
+
+Links.html
+
+[special-partners]:     https://.adjust.com/en/special-partners
 [attribution-data]:     https://github.com/adjust/sdks/blob/master/doc/attribution-data.md
 [example-ios-objc]:     http://github.com/adjust/ios_sdk/tree/master/examples/AdjustExample-iOS
 [example-ios-swift]:    http://github.com/adjust/ios_sdk/tree/master/examples/AdjustExample-Swift
@@ -939,6 +942,7 @@ If you are seing any value in the dashboard other than what you expected to be t
 
 [associated-domains-applinks]:          https://raw.github.com/adjust/sdks/master/Resources/ios/associated-domains-applinks.png
 [universal-links-dashboard-values]: https://raw.github.com/adjust/sdks/master/Resources/ios/universal-links-dashboard-values5.png
+[tiny-warning-sign]:
 
 ## <a id="license"></a>License
 
