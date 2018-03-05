@@ -250,11 +250,13 @@ If you are using the adjust tracker URL with an option to deep link into your ap
 
 ### <a id="apple-universal-links"></a>Apple Universal Links
 
-In order to set deep linking support for iOS 9 and later devices, you need to enable your app to handle Apple universal links. To find out more about universal links and how their setup looks like, you can check [here][universal-links].
+In order to set deep linking support for iOS 9 and later devices, you need to enable your app to handle Apple Universal Links. To find out more about universal links and how their setup looks like, you can check [here][universal-links].
 
-Adjust is taking care of lots of things to do with universal links behind the scenes. But, in order to support universal links with the adjust, you need to perform small setup for universal links in the adjust dashboard. For more information on that should be done, please consult our official [docs][universal-links-guide].
+Implementing Universal Links is a mandatory step if you wish to use Adjust's attribution features to their full extent. [This guide][universal-links-guide] describes the steps that need to be taken in order for you to add Universal Links to your app.
 
-Once you have successfully enabled the universal links feature in the dashboard, you need to do this in your app as well:
+Deeplinking via a scheme appended to an Adjust tracking URL (e.g. http://app.adjust.com/abc123?deep_link=myapp://) will only work after the implementation of Universal Links.
+
+Once you have successfully generated a Universal Link for your app in the Adjust dashboard, you need to do this in your app as well:
 
 After enabling `Associated Domains` for your app in Apple Developer Portal, you need to do the same thing in your app's Xcode project. After enabling `Assciated Domains`, add the universal link which was generated for you in the adjust dashboard in the `Domains` section by prefixing it with `applinks:` and make sure that you also remove the `http(s)` part of the universal link.
 
