@@ -248,32 +248,6 @@ An App Secret is set by calling `setAppSecret` on your `AdjustConfig` instance:
 
 If you are using the adjust tracker URL with an option to deep link into your app from the URL, there is the possibility to get info about the deep link URL and its content. Hitting the URL can happen when the user has your app already installed (standard deep linking scenario) or if they don't have the app on their device (deferred deep linking scenario). Both of these scenarios are supported by the adjust SDK and in both cases the deep link URL will be provided to you after you app has been started after hitting the tracker URL. In order to use this feature in your app, you need to set it up properly.
 
-### <a id="deeplinking-standard"></a>Standard deep linking scenario
-
-If your user already has the app installed and hits the tracker URL with deep link information in it, your application will be opened and the content of the deep link will be sent to your app so that you can parse it and decide what to do next. With introduction of iOS 9, Apple has changed the way how deep linking should be handled in the app. Depending on which scenario you want to use for your app (or if you want to use them both to support wide range of devices), you need to set up your app to handle one or both of the following scenarios.
-
-### <a id="deeplinking-setup-old"></a>Deep linking on iOS 8 and earlier
-
-Deep linking on iOS 8 and earlier devices is being done with usage of a custom URL scheme setting. You need to pick a custom URL scheme name which your app will be in charge for opening. This scheme name will also be used in the adjust tracker URL as part of the `deep_link` parameter. In order to set this in your app, open your `Info.plist` file and add new `URL types` row to it. In there, as `URL identifier` write you app's bundle ID and under `URL schemes` add scheme name(s) which you want your app to handle. In the example below, we have chosen that our app should handle the `adjustExample` scheme name.
-
-![][custom-url-scheme]
-
-After this has been set up, your app will be opened after you click the adjust tracker URL with `deep_link` parameter which contains the scheme name which you have chosen. After app is opened, `openURL` method of your `AppDelegate` class will be triggered and the place where the content of the `deep_link` parameter from the tracker URL will be delivered. If you want to access the content of the deep link, override this method.
-
-```objc
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    // url object contains your deep link content
-
-    // Apply your logic to determine the return value of this method
-    return YES;
-    // or
-    // return NO;
-}
-```
-
-With this setup, you have successfully set up deep linking handling for iOS devices with iOS 8 and earlier versions.
-
 ### <a id="apple-universal-links"></a>Apple Universal Links
 
 In order to set deep linking support for iOS 9 and later devices, you need to enable your app to handle Apple universal links. To find out more about universal links and how their setup looks like, you can check [here][universal-links].
@@ -324,6 +298,28 @@ We provide a helper function that allows you to convert a universal link to an o
 }
 ```
 
+### <a id="deeplinking-setup-old"></a>Deep linking on iOS 8 and earlier
+
+Deep linking on iOS 8 and earlier devices is being done with usage of a custom URL scheme setting. You need to pick a custom URL scheme name which your app will be in charge for opening. This scheme name will also be used in the adjust tracker URL as part of the `deep_link` parameter. In order to set this in your app, open your `Info.plist` file and add new `URL types` row to it. In there, as `URL identifier` write you app's bundle ID and under `URL schemes` add scheme name(s) which you want your app to handle. In the example below, we have chosen that our app should handle the `adjustExample` scheme name.
+
+![][custom-url-scheme]
+
+After this has been set up, your app will be opened after you click the adjust tracker URL with `deep_link` parameter which contains the scheme name which you have chosen. After app is opened, `openURL` method of your `AppDelegate` class will be triggered and the place where the content of the `deep_link` parameter from the tracker URL will be delivered. If you want to access the content of the deep link, override this method.
+
+```objc
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    // url object contains your deep link content
+
+    // Apply your logic to determine the return value of this method
+    return YES;
+    // or
+    // return NO;
+}
+```
+
+With this setup, you have successfully set up deep linking handling for iOS devices with iOS 8 and earlier versions.
+
 ### <a id="deeplinking-deferred"></a>Deferred deep linking scenario
 
 You can register a delegate callback to be notified before a deferred deep link is opened and decide if the adjust SDK will try to open it. The same optional protocol `AdjustDelegate` used for the [attribution callback](#attribution-callback) and for [event and session callbacks](#event-session-callbacks) is used.
@@ -344,9 +340,6 @@ Follow the same steps and implement the following delegate callback function for
 The callback function will be called after the SDK receives a deffered deep link from our server and before opening it. Within the callback function you have access to the deep link. The returned boolean value determines if the SDK will launch the deep link. You could, for example, not allow the SDK to open the deep link at the current moment, save it, and open it yourself later.
 
 If this callback is not implemented, **the adjust SDK will always try to open the deep link by default**.
-
-
-
 
 ### <a id="push-token"></a>Push token
 
