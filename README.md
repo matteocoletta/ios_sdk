@@ -797,23 +797,11 @@ This error typically occurs when testing installs. Uninstalling and reinstalling
 
 This behaviour can be cumbersome during tests, but is necessary in order to have the sandbox behaviour match production as much as possible.
 
-You can reset the session data of the device in our servers. Check the error message in the logs:
+You can reset the session data of your app for any device directly from the Adjust Dashboard, provided that you have at least Editor access to the app. Under Settings > Testing Console you can paste a valid IDFA to both verify the attribution information of a device, and ask our database to "forget" the device and track a new install whenever you reinstall the app.
 
-```
-Session failed (Ignoring too frequent session. Last session: YYYY-MM-DDTHH:mm:ss, this session: YYYY-MM-DDTHH:mm:ss, interval: XXs, min interval: 20m) (app_token: {yourAppToken}, adid: {adidValue})
-```
+When the device is forgotten, the Testing console just returns `Forgot device`. If the device was already forgotten or the values were incorrect, the link returns `Advertising ID not found`.
 
-<a id="forget-device">With the `{yourAppToken}` and  either `{adidValue}` or `{idfaValue}` values filled in below, open one of the following links:
-
-```
-http://app.adjust.com/forget_device?app_token={yourAppToken}&adid={adidValue}
-```
-
-```
-http://app.adjust.com/forget_device?app_token={yourAppToken}&idfa={idfaValue}
-```
-
-When the device is forgotten, the link just returns `Forgot device`. If the device was already forgotten or the values were incorrect, the link returns `Device not found`.
+If your current package allows it, you can also inspect and forget a device using our [Developer API](https://docs.adjust.com/en/adjust-for-developers/#rest-api-authentication) 
 
 ### <a id="ts-install-tracked"></a>I'm not seeing "Install tracked" in the logs
 
