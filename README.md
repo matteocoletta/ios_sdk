@@ -232,7 +232,7 @@ Build and run your app. If the build succeeds, you should carefully read the SDK
 
 ## <a id="must-have"></a>Must have
 
-### <a id="sdk-"></a> SDK signature
+### <a id="sdk-signature"></a> SDK signature
 
 The Adjust SDK signature is enabled on a client-by-client basis. If you are interested in using this feature, please contact your account manager.
 
