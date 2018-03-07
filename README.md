@@ -27,7 +27,6 @@ If your app is an app which uses web views you would like to use adjust tracking
      * [Reattribution via deep links](#deeplinking-reattribution)
    * [Push token](#push-token)
 
-
 ### Event Tracking
 
    * [Event tracking](#event-tracking)
@@ -40,8 +39,8 @@ If your app is an app which uses web views you would like to use adjust tracking
 ### Custom Parameters
 
    * [Session parameters](#session-parameters)
-   * [Session callback parameters](#session-callback-parameters)
-   * [Session partner parameters](#session-partner-parameters)
+     * [Session callback parameters](#session-callback-parameters)
+     * [Session partner parameters](#session-partner-parameters)
    * [Event callback parameters](#callback-parameters)
    * [Event partner parameters](#partner-parameters)
       
