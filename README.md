@@ -38,11 +38,13 @@ If your app is an app which uses web views you would like to use adjust tracking
       
 ### Custom Parameters
 
+   * [Event Parameters](#event-parameters)
+     * [Event callback parameters](#callback-parameters)
+     * [Event partner parameters](#partner-parameters)
    * [Session parameters](#session-parameters)
      * [Session callback parameters](#session-callback-parameters)
      * [Session partner parameters](#session-partner-parameters)
-   * [Event callback parameters](#callback-parameters)
-   * [Event partner parameters](#partner-parameters)
+   * [Delay start](#delay-start)
       
 ### Additional Features
      
@@ -53,7 +55,7 @@ If your app is an app which uses web views you would like to use adjust tracking
      * [iOS Advertising Identifier](#di-idfa)
      * [Adjust device identifier](#di-adid)
    * [Pre-installed trackers](#pre-installed-trackers)
-   * [Delay start](#delay-start)
+   
    * [Event buffering](#event-buffering)
    * [Background tracking](#background-tracking)
    * [Disable tracking](#disable-tracking)
