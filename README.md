@@ -8,42 +8,42 @@ If your app is an app which uses web views you would like to use adjust tracking
 
 ### Early Steps
 
-* [Example apps](#example-apps)
-* [Getting Started](#getting-started)
-   * [Add the SDK to your project](#sdk-add)
-   * [Add iOS frameworks](#sdk-frameworks)
-   * [Integrate the SDK into your app](#sdk-integrate)
-   * [Basic setup](#basic-setup)
-   * [Adjust logging](#adjust-logging)
-   * [Build your app](#build-the-app)
+   * [Example apps](#example-apps)
+   * [Getting Started](#getting-started)
+     * [Add the SDK to your project](#sdk-add)
+     * [Add iOS frameworks](#sdk-frameworks)
+     * [Integrate the SDK into your app](#sdk-integrate)
+     * [Basic setup](#basic-setup)
+     * [Adjust logging](#adjust-logging)
+     * [Build your app](#build-the-app)
 
 ### Must Have
 
-* [SDK signature](#sdk-signature)
-* [Deep linking](#deeplinking)
-	* [Apple Universal Links](#apple-universal-links)
-	* [Deep linking on iOS 8 and earlier](#deeplinking-setup-old)
-	* [Deferred deep linking scenario](#deeplinking-deferred)
-	* [Reattribution via deep links](#deeplinking-reattribution)
-* [Push token](#push-token)
+   * [SDK signature](#sdk-signature)
+   * [Deep linking](#deeplinking)
+     * [Apple Universal Links](#apple-universal-links)
+     * [Deep linking on iOS 8 and earlier](#deeplinking-setup-old)
+     * [Deferred deep linking scenario](#deeplinking-deferred)
+     * [Reattribution via deep links](#deeplinking-reattribution)
+   * [Push token](#push-token)
 
 
 ### Event Tracking
 
    * [Event tracking](#event-tracking)
-      * [Revenue tracking](#revenue-tracking)
-      * [Revenue deduplication](#revenue-deduplication)
-      * [In-App Purchase verification](#iap-verification)
-      * [Callback parameters](#callback-parameters)
-      * [Partner parameters](#partner-parameters)
+     * [Revenue tracking](#revenue-tracking)
+     * [Revenue deduplication](#revenue-deduplication)
+     * [In-App Purchase verification](#iap-verification)
+     * [Callback parameters](#callback-parameters)
+     * [Partner parameters](#partner-parameters)
       
 ### Custom Parameters
 
-    * [Session parameters](#session-parameters)
-    * [Session callback parameters](#session-callback-parameters)
-    * [Session partner parameters](#session-partner-parameters)
-    * [Event callback parameters](#callback-parameters)
-    * [Event partner parameters](#partner-parameters)
+   * [Session parameters](#session-parameters)
+   * [Session callback parameters](#session-callback-parameters)
+   * [Session partner parameters](#session-partner-parameters)
+   * [Event callback parameters](#callback-parameters)
+   * [Event partner parameters](#partner-parameters)
       
 ### Additional Features
      
@@ -51,8 +51,8 @@ If your app is an app which uses web views you would like to use adjust tracking
    * [User attribution](#user-attribution)
    * [Event and session callbacks](#event-session-callbacks)
    * [Device IDs](#device-ids)
-      * [iOS Advertising Identifier](#di-idfa)
-      * [Adjust device identifier](#di-adid)
+     * [iOS Advertising Identifier](#di-idfa)
+     * [Adjust device identifier](#di-adid)
    * [Pre-installed trackers](#pre-installed-trackers)
    * [Delay start](#delay-start)
    * [Event buffering](#event-buffering)
@@ -69,7 +69,7 @@ If your app is an app which uses web views you would like to use adjust tracking
    * [I'm not seeing "Install tracked" in the logs](#ts-install-tracked)
    * [I'm seeing "Unattributable SDK click ignored" message](#ts-iad-sdk-click)
    * [I'm seeing wrong revenue data in the adjust dashboard](#ts-wrong-revenue-amount)
-* [License](#license)
+   * [License](#license)
 
 ---
 
