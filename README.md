@@ -28,7 +28,7 @@ If your app is an app which uses web views you would like to use adjust tracking
 * [Push token](#push-token)
 
 
-### Additional Features
+### Event Tracking
 
    * [Event tracking](#event-tracking)
       * [Revenue tracking](#revenue-tracking)
@@ -36,9 +36,17 @@ If your app is an app which uses web views you would like to use adjust tracking
       * [In-App Purchase verification](#iap-verification)
       * [Callback parameters](#callback-parameters)
       * [Partner parameters](#partner-parameters)
-   * [Session parameters](#session-parameters)
-      * [Session callback parameters](#session-callback-parameters)
-      * [Session partner parameters](#session-partner-parameters)
+      
+### Custom Parameters
+
+    * [Session parameters](#session-parameters)
+    * [Session callback parameters](#session-callback-parameters)
+    * [Session partner parameters](#session-partner-parameters)
+    * [Event callback parameters](#callback-parameters)
+    * [Event partner parameters](#partner-parameters)
+      
+### Additional Features
+     
    * [Attribution callback](#attribution-callback)
    * [User attribution](#user-attribution)
    * [Event and session callbacks](#event-session-callbacks)
