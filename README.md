@@ -52,7 +52,7 @@ If your app is an app which uses web views you would like to use adjust tracking
    * [Disable tracking](#disable-tracking)
    * [Offline mode](#offline-mode)
 
-### Troubleshooting
+### Testing and Troubleshooting
 
    * [Issues with delayed SDK initialisation](#ts-delayed-init)
    * [I'm seeing "Adjust requires ARC" error](#ts-arc)
@@ -725,7 +725,7 @@ If you want to use the Adjust SDK to recognize users that found your app pre-ins
     Default tracker: 'abc123'
     ```
 
-## <a id="troubleshooting"></a>Troubleshooting
+## <a id="troubleshooting"></a>Testing and Troubleshooting
 
 ### <a id="ts-delayed-init"></a>Issues with delayed SDK initialisation
 
