@@ -370,6 +370,8 @@ To send us the push notification token, add the following call to `Adjust` in th
 
 Push tokens are used for the Adjust Audience Builder and client callbacks, and are required for the upcoming uninstall tracking feature.
 
+
+
 ## Event Tracking
 
 ### <a id="event-tracking"></a>Event tracking
@@ -431,6 +433,8 @@ If you want to track in-app purchases, please make sure to call `trackEvent` aft
 ### <a id="iap-verification"></a>In-App Purchase verification
 
 If you want to check the validity of In-App Purchases made in your app using Purchase Verification, adjust's server side receipt verification tool, then check out our iOS purchase SDK and read more about it [here][ios-purchase-verification].
+
+
 
 ## Custom Parameters
 
@@ -547,6 +551,8 @@ Set the initial delay time in seconds with the method `setDelayStart` in the `AD
 In this case this will make the adjust SDK not send the initial install session and any event created for 5.5 seconds. After this time is expired or if you call `[Adjust sendFirstPackages]` in the meanwhile, every session parameter will be added to the delayed install session and events and the adjust SDK will resume as usual.
 
 **The maximum delay start time of the adjust SDK is 10 seconds**.
+
+
 
 ## <a id="additional-feature"></a>Additional features
 
