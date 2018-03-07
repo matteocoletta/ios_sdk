@@ -362,9 +362,7 @@ To send us the push notification token, add the following call to `Adjust` in th
 
 Push tokens are used for the Adjust Audience Builder and client callbacks, and are required for the upcoming uninstall tracking feature.
 
-## <a id="additional-feature"></a>Additional features
-
-Once you integrate the adjust SDK into your project, you can take advantage of the following features.
+## Event Tracking
 
 ### <a id="event-tracking"></a>Event tracking
 
@@ -426,49 +424,9 @@ If you want to track in-app purchases, please make sure to call `trackEvent` aft
 
 If you want to check the validity of In-App Purchases made in your app using Purchase Verification, adjust's server side receipt verification tool, then check out our iOS purchase SDK and read more about it [here][ios-purchase-verification].
 
-### <a id="event-parameters"></a>Event parameters
 
-In addition to the data points that Adjust collects [by default](https://partners.adjust.com/placeholders/), you can set up your SDK to 
 
-### <a id="callback-parameters"></a>Callback parameters
-
-You can register a callback URL for your events in your [dashboard]. We will send a GET request to that URL whenever the event is tracked. You can add callback parameters to that event by calling `addCallbackParameter` to the event before tracking it. We will then append these parameters to your callback URL.
-
-For example, suppose you have registered the URL `http://www.mydomain.com/callback` then track an event like this:
-
-```objc
-ADJEvent *event = [ADJEvent eventWithEventToken:@"abc123"];
-
-[event addCallbackParameter:@"key" value:@"value"];
-[event addCallbackParameter:@"foo" value:@"bar"];
-
-[Adjust trackEvent:event];
-```
-
-In that case we would track the event and send a request to:
-
-    http://www.mydomain.com/callback?key=value&foo=bar
-
-It should be mentioned that we support a variety of placeholders like `{idfa}` that can be used as parameter values. In the resulting callback this placeholder would be replaced with the ID for Advertisers of the current device. Also note that we don't store any of your custom parameters, but only append them to your callbacks, thus without a callback they will not be saved nor sent to you.
-
-You can read more about using URL callbacks, including a full list of available values, in our [callbacks guide][callbacks-guide].
-
-### <a id="partner-parameters"></a>Partner parameters
-
-You can also add parameters to be transmitted to network partners, which have been activated in your Adjust dashboard.
-
-This works similarly to the callback parameters mentioned above, but can be added by calling the `addPartnerParameter` method on your `ADJEvent` instance.
-
-```objc
-ADJEvent *event = [ADJEvent eventWithEventToken:@"abc123"];
-
-[event addPartnerParameter:@"key" value:@"value"];
-[event addPartnerParameter:@"foo" value:@"bar"];
-
-[Adjust trackEvent:event];
-```
-
-You can read more about special partners and these integrations in our [guide to special partners][special-partners].
+Once you integrate the adjust SDK into your project, you can take advantage of the following features.
 
 ### <a id="session-parameters"></a>Session parameters
 
@@ -499,6 +457,52 @@ If you wish to remove all key and values from the session callback parameters, y
 ```objc
 [Adjust resetSessionCallbackParameters];
 ```
+
+## Custom Parameters
+
+### <a id="event-parameters"></a>Event parameters
+
+In addition to the data points that Adjust collects [by default](https://partners.adjust.com/placeholders/), you can set up your SDK to 
+
+### <a id="callback-parameters"></a>Event callback parameters
+
+You can register a callback URL for your events in your [dashboard]. We will send a GET request to that URL whenever the event is tracked. You can add callback parameters to that event by calling `addCallbackParameter` to the event before tracking it. We will then append these parameters to your callback URL.
+
+For example, suppose you have registered the URL `http://www.mydomain.com/callback` then track an event like this:
+
+```objc
+ADJEvent *event = [ADJEvent eventWithEventToken:@"abc123"];
+
+[event addCallbackParameter:@"key" value:@"value"];
+[event addCallbackParameter:@"foo" value:@"bar"];
+
+[Adjust trackEvent:event];
+```
+
+In that case we would track the event and send a request to:
+
+    http://www.mydomain.com/callback?key=value&foo=bar
+
+It should be mentioned that we support a variety of placeholders like `{idfa}` that can be used as parameter values. In the resulting callback this placeholder would be replaced with the ID for Advertisers of the current device. Also note that we don't store any of your custom parameters, but only append them to your callbacks, thus without a callback they will not be saved nor sent to you.
+
+You can read more about using URL callbacks, including a full list of available values, in our [callbacks guide][callbacks-guide].
+
+### <a id="partner-parameters"></a>Event partner parameters
+
+You can also add parameters to be transmitted to network partners, which have been activated in your Adjust dashboard.
+
+This works similarly to the callback parameters mentioned above, but can be added by calling the `addPartnerParameter` method on your `ADJEvent` instance.
+
+```objc
+ADJEvent *event = [ADJEvent eventWithEventToken:@"abc123"];
+
+[event addPartnerParameter:@"key" value:@"value"];
+[event addPartnerParameter:@"foo" value:@"bar"];
+
+[Adjust trackEvent:event];
+```
+
+You can read more about special partners and these integrations in our [guide to special partners][special-partners].
 
 ### <a id="session-partner-parameters"></a>Session partner parameters
 
@@ -539,6 +543,8 @@ Set the initial delay time in seconds with the method `setDelayStart` in the `AD
 In this case this will make the adjust SDK not send the initial install session and any event created for 5.5 seconds. After this time is expired or if you call `[Adjust sendFirstPackages]` in the meanwhile, every session parameter will be added to the delayed install session and events and the adjust SDK will resume as usual.
 
 **The maximum delay start time of the adjust SDK is 10 seconds**.
+
+## <a id="additional-feature"></a>Additional features
 
 ### <a id="attribution-callback"></a>Attribution callback
 
