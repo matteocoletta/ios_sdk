@@ -55,7 +55,6 @@ If your app is an app which uses web views you would like to use adjust tracking
      * [iOS Advertising Identifier](#di-idfa)
      * [Adjust device identifier](#di-adid)
    * [Pre-installed trackers](#pre-installed-trackers)
-   
    * [Event buffering](#event-buffering)
    * [Background tracking](#background-tracking)
    * [Disable tracking](#disable-tracking)
@@ -596,6 +595,16 @@ The delegate function will be called after the SDK receives the final attributio
 
 If any value is unavailable, it will default to `nil`.
 
+### <a id="user-attribution"></a>User attribution
+
+The attribution callback will be triggered as described in the [attribution callback section](#attribution-callback), providing you with the information about any new attribution when ever it changes. In any other case, where you want to access information about your user's current attribution, you can make a call to the following method of the `Adjust` instance:
+
+```objc
+ADJAttribution *attribution = [Adjust attribution];
+```
+
+**Note**: Information about current attribution is available after app installation has been tracked by the adjust backend and attribution callback has been initially triggered. From that moment on, adjust SDK has information about your user's attribution and you can access it with this method. So, **it is not possible** to access user's attribution value before the SDK has been initialised and attribution callback has been initially triggered.
+
 ### <a id="event-session-callbacks"></a>Event and session callbacks
 
 You can register a delegate callback to be notified of successful and failed tracked events and/or sessions. The same optional protocol `AdjustDelegate` used for the [attribution callback](#attribution-callback) is used.
@@ -645,52 +654,6 @@ And both event and session failed objects also contain:
 
 - `BOOL willRetry` indicates that there will be an attempt to resend the package at a later time.
 
-### <a id="disable-tracking"></a>Disable tracking
-
-You can disable the adjust SDK from tracking any activities of the current device by calling `setEnabled` with parameter `NO`. **This setting is remembered between sessions**, but it can only be activated after the first session.
-
-```objc
-[Adjust setEnabled:NO];
-```
-
-<a id="is-enabled">You can check if the adjust SDK is currently enabled by calling the function `isEnabled`. It is always possible to activate the adjust SDK by invoking `setEnabled` with the enabled parameter as `YES`.
-
-### <a id="offline-mode"></a>Offline mode
-
-You can put the adjust SDK in offline mode to suspend transmission to our servers while retaining tracked data to be sent later. While in offline mode, all information is saved in a file, so be careful not to trigger too many events while in offline mode.
-
-You can activate offline mode by calling `setOfflineMode` with the parameter `YES`.
-
-```objc
-[Adjust setOfflineMode:YES];
-```
-
-Conversely, you can deactivate offline mode by calling `setOfflineMode` with `NO`. When the adjust SDK is put back in online mode, all saved information is sent to our servers with the correct time information.
-
-Unlike disabling tracking, this setting is **not remembered** bettween sessions. This means that the SDK is in online mode whenever it is started, even if the app was terminated in offline mode.
-
-### <a id="event-buffering"></a>Event buffering
-
-If your app makes heavy use of event tracking, you might want to delay some HTTP requests in order to send them in one batch every minute. You can enable event buffering with your `ADJConfig` instance:
-
-```objc
-[adjustConfig setEventBufferingEnabled:YES];
-```
-
-If nothing is set, event buffering is **disabled by default**.
-
-
-
-### <a id="background-tracking"></a>Background tracking
-
-The default behaviour of the adjust SDK is to pause sending HTTP requests while the app is in the background. You can change this in your `AdjustConfig` instance:
-
-```objc
-[adjustConfig setSendInBackground:YES];
-```
-
-If nothing is set, sending in background is **disabled by default**.
-
 ### <a id="device-ids"></a>Device IDs
 
 The adjust SDK offers you possibility to obtain some of the device identifiers.
@@ -714,17 +677,7 @@ NSString *adid = [Adjust adid];
 ```
 
 **Note**: Information about the **adid** is available after the app's installation has been tracked by the adjust backend. From that moment on, the adjust SDK has information about the device **adid** and you can access it with this method. So, **it is not possible** to access the **adid** before the SDK has been initialised and the installation of your app has been tracked successfully.
-
-### <a id="user-attribution"></a>User attribution
-
-The attribution callback will be triggered as described in the [attribution callback section](#attribution-callback), providing you with the information about any new attribution when ever it changes. In any other case, where you want to access information about your user's current attribution, you can make a call to the following method of the `Adjust` instance:
-
-```objc
-ADJAttribution *attribution = [Adjust attribution];
-```
-
-**Note**: Information about current attribution is available after app installation has been tracked by the adjust backend and attribution callback has been initially triggered. From that moment on, adjust SDK has information about your user's attribution and you can access it with this method. So, **it is not possible** to access user's attribution value before the SDK has been initialised and attribution callback has been initially triggered.
-
+  
 ### <a id="pre-installed-trackers"></a>Pre-installed trackers
 
 If you want to use the Adjust SDK to recognize users that found your app pre-installed on their device, follow these steps.
@@ -747,6 +700,54 @@ If you want to use the Adjust SDK to recognize users that found your app pre-ins
     ```
     Default tracker: 'abc123'
     ```
+
+### <a id="event-buffering"></a>Event buffering
+
+If your app makes heavy use of event tracking, you might want to delay some HTTP requests in order to send them in one batch every minute. You can enable event buffering with your `ADJConfig` instance:
+
+```objc
+[adjustConfig setEventBufferingEnabled:YES];
+```
+
+If nothing is set, event buffering is **disabled by default**.
+
+
+
+### <a id="background-tracking"></a>Background tracking
+
+The default behaviour of the adjust SDK is to pause sending HTTP requests while the app is in the background. You can change this in your `AdjustConfig` instance:
+
+```objc
+[adjustConfig setSendInBackground:YES];
+```
+
+If nothing is set, sending in background is **disabled by default**.
+
+### <a id="offline-mode"></a>Offline mode
+
+You can put the adjust SDK in offline mode to suspend transmission to our servers while retaining tracked data to be sent later. While in offline mode, all information is saved in a file, so be careful not to trigger too many events while in offline mode.
+
+You can activate offline mode by calling `setOfflineMode` with the parameter `YES`.
+
+```objc
+[Adjust setOfflineMode:YES];
+```
+
+Conversely, you can deactivate offline mode by calling `setOfflineMode` with `NO`. When the adjust SDK is put back in online mode, all saved information is sent to our servers with the correct time information.
+
+Unlike disabling tracking, this setting is **not remembered** bettween sessions. This means that the SDK is in online mode whenever it is started, even if the app was terminated in offline mode.
+
+### <a id="disable-tracking"></a>Disable tracking
+
+You can disable the adjust SDK from tracking any activities of the current device by calling `setEnabled` with parameter `NO`. **This setting is remembered between sessions**, but it can only be activated after the first session.
+
+```objc
+[Adjust setEnabled:NO];
+```
+
+<a id="is-enabled">You can check if the adjust SDK is currently enabled by calling the function `isEnabled`. It is always possible to activate the adjust SDK by invoking `setEnabled` with the enabled parameter as `YES`.
+  
+  
 
 ## <a id="troubleshooting"></a>Testing and Troubleshooting
 
