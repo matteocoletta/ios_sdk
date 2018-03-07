@@ -57,8 +57,8 @@ If your app is an app which uses web views you would like to use adjust tracking
    * [Pre-installed trackers](#pre-installed-trackers)
    * [Event buffering](#event-buffering)
    * [Background tracking](#background-tracking)
-   * [Disable tracking](#disable-tracking)
    * [Offline mode](#offline-mode)
+   * [Disable tracking](#disable-tracking)
 
 ### Testing and Troubleshooting
 
