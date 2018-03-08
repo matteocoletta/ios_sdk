@@ -268,7 +268,7 @@ In order to set deep linking support for iOS 9 and later devices, you need to en
 
 Implementing Universal Links is a mandatory step if you wish to use Adjust's attribution features to their full extent. [This guide][universal-links-guide] describes the steps that need to be taken in order for you to add Universal Links to your app.
 
-**Deeplinks appended to an Adjust tracking URL (e.g. http://app.adjust.com/abc123?deep_link=myapp://) will only work after the implementation of Universal Links.**
+**On Safari, Deeplinks appended to an Adjust tracking URL (e.g. http://app.adjust.com/abc123?deep_link=myapp://) will only work after the implementation of Universal Links.**
 
 Once you have successfully generated a Universal Link for your app in the Adjust dashboard, you need to do this in your app as well:
 
