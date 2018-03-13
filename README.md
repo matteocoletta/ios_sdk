@@ -29,7 +29,7 @@ If your app is an app which uses web views you would like to use adjust tracking
 
 ### Event Tracking
 
-   * [Event](#event-tracking)
+   * [Event Tracking](#event-tracking)
      * [Revenue tracking](#revenue-tracking)
      * [Revenue deduplication](#revenue-deduplication)
      * [In-App Purchase verification](#iap-verification)
