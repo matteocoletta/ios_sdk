@@ -195,10 +195,6 @@ NSString *environment = ADJEnvironmentProduction;
 
 We use this environment to distinguish between real traffic and test traffic from test devices. It is very important that you keep this value meaningful at all times! This is especially important if you are tracking revenue.
 
-#### Common issues:
-
-  * [Session tracking](#ts-session-tracking)
-
 
 
 ### <a id="adjust-logging"></a>Adjust logging
@@ -249,6 +245,11 @@ ADJConfig *adjustConfig = [ADJConfig configWithAppToken:yourAppToken
 Build and run your app. If the build succeeds, you should carefully read the SDK logs in the console. After the app launches for the first time, you should see the info log `Install tracked`.
 
 ![][run]
+
+
+#### Common issues:
+
+  * [Session tracking](#ts-session-tracking)
 
 
 
@@ -808,7 +809,7 @@ As described [above](#deeplinking-reattribution), when handling deep link reattr
 
 If you make this call before the SDK has been initialised, information about the attribution information from the deep link URL will be permanetly lost. If you want the adjust SDK to successfully reattribute your user, you would need to queue this `NSURL` object information and trigger `appWillOpenUrl` method once the SDK has been initialised.
 
-### Session tracking
+### <a id="ts-session-tracking"></a>Session tracking
 
 Session tracking is something what the adjust SDK performs automatically and is beyond reach of an app developer. For proper session tracking it is crucial to have the adjust SDK initialised as advised in this README. Not doing so can have unpredicted influences on proper session tracking and DAU numbers in the dashboard.
 
