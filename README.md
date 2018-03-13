@@ -230,7 +230,7 @@ ADJConfig *adjustConfig = [ADJConfig configWithAppToken:yourAppToken
 [Adjust appDidLaunch:adjustConfig];
 ```
 
-#### Common issues:
+### Common issues:
 
   *[Adjust requires ARC](#ts-arc)
   *[[UIDevice adjTrackingEnabled]: unrecognized selector sent to instance](#ts-categories)
