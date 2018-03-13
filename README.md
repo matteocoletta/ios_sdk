@@ -437,6 +437,8 @@ When tapping the button you should now see `Event tracked` in the logs.
 
 The event instance can be used to configure the event further before tracking it:
 
+#### [Common issues](#ts-event-tracking)
+
 ### <a id="revenue-tracking"></a>Revenue tracking
 
 If your users can generate revenue by tapping on advertisements or making in-app purchases you can track those revenues with events. Lets say a tap is worth one Euro cent. You could then track the revenue event like this:
