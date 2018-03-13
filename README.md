@@ -408,6 +408,8 @@ The call to `appWillOpenUrl` should be done like this to support deep linking re
 }
 ```
 
+#### [Common issues](#ts-reattribution-deeplinks)
+
 ### <a id="push-token"></a>Push token
 
 To send us the push notification token, add the following call to `Adjust` in the `didRegisterForRemoteNotificationsWithDeviceToken` of your app delegate:
