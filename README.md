@@ -887,7 +887,7 @@ This error typically occurs when testing installs. Uninstalling and reinstalling
 
 This behaviour can be cumbersome during tests, but is necessary in order to have the sandbox behaviour match production as much as possible.
 
-You can reset the session data of your app for any device directly from the Adjust Dashboard, provided that you have at least Editor access to the app. Under Settings > Testing Console you can paste a valid IDFA to both verify the attribution information of a device, and ask our database to "forget" the device and track a new install whenever you reinstall the app.
+You can reset the session data of your app for any device directly from the Adjust Dashboard, **provided that you have at least an Editor access to the app**. Under Settings > Testing Console you can paste a valid IDFA to both verify the attribution information of a device, and ask our database to "forget" the device and track a new install whenever you reinstall the app.
 
 ![][testing-console]
 
