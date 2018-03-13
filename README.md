@@ -230,6 +230,16 @@ ADJConfig *adjustConfig = [ADJConfig configWithAppToken:yourAppToken
 [Adjust appDidLaunch:adjustConfig];
 ```
 
+#### Common issues:
+
+  *[Adjust requires ARC](#ts-arc)
+  *[[UIDevice adjTrackingEnabled]: unrecognized selector sent to instance](#ts-categories)
+  *[Session failed (Ignoring too frequent session.)](#ts-session-failed)
+  *[no "Install Tracked" message](#ts-install-tracked)
+  *[Unattributable SDK click ignored](#ts-iad-sdk-click)
+
+
+
 ### <a id="build-the-app"></a>Build your app
 
 Build and run your app. If the build succeeds, you should carefully read the SDK logs in the console. After the app launches for the first time, you should see the info log `Install tracked`.
@@ -774,17 +784,17 @@ Another thing which might be affected by delayed SDK initialisation is session t
 
 As an example, let's assume this scenario: You are initialising the adjust SDK when some specific view or view controller is loaded and let's say that this is not the splash nor the first screen in your app, but user has to navigate to it from the home screen. If user downloads your app and opens it, the home screen will be displayed. At this moment, this user has made an install which should be tracked. However, the adjust SDK doesn't know anything about this, because the user needs to navigate to the screen mentioned previously where you decided to initialise the adjust SDK. Further, if the user decides that he/she doesn't like the app and uninstalls it right after seeing home screen, all the information mentioned above will never be tracked by our SDK, nor displayed in the dashboard.
 
-#### Event tracking
+### Event tracking
 
 For the events you want to track, queue them with some internal queueing mechanism and track them after SDK is initialised. Tracking events before initialising SDK will cause the events to be `dropped` and `permanently lost`, so make sure you are tracking them once SDK is `initialised` and [`enabled`](#is-enabled).
 
-#### Offline mode and enable/disable tracking
+### Offline mode and enable/disable tracking
 
 Offline mode is not the feature which is persisted between SDK initialisations, so it is set to `false` by default. If you try to enable offline mode before initialising SDK, it will still be set to `false` when you eventually initialise the SDK.
 
 Enabling/disabling tracking is the setting which is persisted between the SDK initialisations. If you try to toggle this value before initialising the SDK, toggle attempt will be ignored. Once initialised, SDK will be in the state (enabled or disabled) like before this toggle attempt.
 
-#### Reattribution via deep links
+### Reattribution via deep links
 
 As described [above](#deeplinking-reattribution), when handling deep link reattributions, depending on deep linking mechanism you are using (old style vs. universal links), you will obtain `NSURL` object after which you need to make following call:
 
@@ -794,7 +804,7 @@ As described [above](#deeplinking-reattribution), when handling deep link reattr
 
 If you make this call before the SDK has been initialised, information about the attribution information from the deep link URL will be permanetly lost. If you want the adjust SDK to successfully reattribute your user, you would need to queue this `NSURL` object information and trigger `appWillOpenUrl` method once the SDK has been initialised.
 
-#### Session tracking
+### Session tracking
 
 Session tracking is something what the adjust SDK performs automatically and is beyond reach of an app developer. For proper session tracking it is crucial to have the adjust SDK initialised as advised in this README. Not doing so can have unpredicted influences on proper session tracking and DAU numbers in the dashboard.
 
