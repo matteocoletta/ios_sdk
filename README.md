@@ -836,7 +836,7 @@ If you want to simulate the installation scenario of your app on your test devic
 In order to run the app installation scenario, you need to do following:
 
 * Uninstall app from your device (completely remove it)
-* Forget your test device from the adjust backend like explained in the issue [above](#forget-device)
+* Forget your test device from the adjust backend like explained in the issue [above](#ts-session-failed)
 * Run your app from the Xcode on the test device and you will see log message "Install tracked"
 
 ### <a id="ts-iad-sdk-click"></a>I'm seeing the "Unattributable SDK click ignored" message
