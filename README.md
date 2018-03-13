@@ -797,6 +797,8 @@ Conversely, you can deactivate offline mode by calling `setOfflineMode` with `NO
 
 Unlike disabling tracking, this setting is **not remembered** bettween sessions. This means that the SDK is in online mode whenever it is started, even if the app was terminated in offline mode.
 
+#### [Common issues](#ts-offline-disable)
+
 ### <a id="disable-tracking"></a>Disable tracking
 
 You can disable the adjust SDK from tracking any activities of the current device by calling `setEnabled` with parameter `NO`. **This setting is remembered between sessions**, but it can only be activated after the first session.
@@ -806,6 +808,8 @@ You can disable the adjust SDK from tracking any activities of the current devic
 ```
 
 <a id="is-enabled">You can check if the adjust SDK is currently enabled by calling the function `isEnabled`. It is always possible to activate the adjust SDK by invoking `setEnabled` with the enabled parameter as `YES`.
+
+#### [Common issues](#ts-offline-disable)
   
   
 
