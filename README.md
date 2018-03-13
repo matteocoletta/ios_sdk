@@ -823,7 +823,9 @@ This behaviour can be cumbersome during tests, but is necessary in order to have
 
 You can reset the session data of your app for any device directly from the Adjust Dashboard, provided that you have at least Editor access to the app. Under Settings > Testing Console you can paste a valid IDFA to both verify the attribution information of a device, and ask our database to "forget" the device and track a new install whenever you reinstall the app.
 
-When the device is forgotten, the Testing console just returns `Forgot device`. If the device was already forgotten or the values were incorrect, the link returns `Advertising ID not found`.
+![][testing-console]
+
+When the device is forgotten, the Testing Console just returns `Forgot device`. If the device was already forgotten or the values were incorrect, the link returns `Advertising ID not found`.
 
 If your current package allows it, you can also inspect and forget a device using our [Developer API](https://docs.adjust.com/en/adjust-for-developers/#rest-api-authentication) 
 
@@ -952,8 +954,10 @@ Links.html
 [xcode-associated-domains]:   https://raw.github.com/adjust/sdks/master/Resources/ios/xcode-associated-domains5.png
 [universal-links-dashboard]:  https://raw.github.com/adjust/sdks/master/Resources/ios/universal-links-dashboard5.png
 
-[associated-domains-applinks]:          https://raw.github.com/adjust/sdks/master/Resources/ios/associated-domains-applinks.png
+[associated-domains-applinks]:      https://raw.github.com/adjust/sdks/master/Resources/ios/associated-domains-applinks.png
 [universal-links-dashboard-values]: https://raw.github.com/adjust/sdks/master/Resources/ios/universal-links-dashboard-values5.png
+
+[testing-console]:                  https://github.com/matteocoletta/ios_sdk/blob/matteocoletta-patch-1/testing_console.png
 
 ## <a id="license"></a>License
 
