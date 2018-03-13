@@ -195,6 +195,10 @@ NSString *environment = ADJEnvironmentProduction;
 
 We use this environment to distinguish between real traffic and test traffic from test devices. It is very important that you keep this value meaningful at all times! This is especially important if you are tracking revenue.
 
+#### Common issues:
+
+  * [Session tracking](#ts-session-tracking)
+
 
 
 ### <a id="adjust-logging"></a>Adjust logging
