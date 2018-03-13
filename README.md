@@ -247,9 +247,7 @@ Build and run your app. If the build succeeds, you should carefully read the SDK
 ![][run]
 
 
-#### Common issues:
-
-  * [Session tracking](#ts-session-tracking)
+#### [Common issues](#ts-session-tracking)
 
 
 
@@ -565,6 +563,9 @@ Set the initial delay time in seconds with the method `setDelayStart` in the `AD
 In this case this will make the adjust SDK not send the initial install session and any event created for 5.5 seconds. After this time is expired or if you call `[Adjust sendFirstPackages]` in the meanwhile, every session parameter will be added to the delayed install session and events and the adjust SDK will resume as usual.
 
 **The maximum delay start time of the adjust SDK is 10 seconds**.
+
+
+#### [Common issues](#ts-delayed-init)
 
 
 
