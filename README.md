@@ -36,7 +36,7 @@ If your app is an app which uses web views you would like to use adjust tracking
       
 ### Custom Parameters
 
-   * [Custom Parameters](#custom-parameter)
+   * [Custom Parameters](#custom-parameters)
      * [Event callback parameters](#callback-parameters)
      * [Event partner parameters](#partner-parameters)
    * [Session parameters](#session-parameters)
