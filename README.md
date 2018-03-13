@@ -457,6 +457,8 @@ When you set a currency token, adjust will automatically convert the incoming re
 
 You can read more about revenue and event tracking in the [event tracking guide](https://docs.adjust.com/en/event-tracking/#tracking-purchases-and-revenues).
 
+#### [Common issues](#ts-wrong-revenue-amount)
+
 ### <a id="revenue-deduplication"></a>Revenue deduplication
 
 You can also pass in an optional transaction ID to avoid tracking duplicate revenues. The last ten transaction IDs are remembered and revenue events with duplicate transaction IDs are skipped. This is especially useful for in-app purchase tracking. See an example below.
