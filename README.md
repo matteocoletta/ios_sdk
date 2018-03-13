@@ -33,8 +33,6 @@ If your app is an app which uses web views you would like to use adjust tracking
      * [Revenue tracking](#revenue-tracking)
      * [Revenue deduplication](#revenue-deduplication)
      * [In-App Purchase verification](#iap-verification)
-     * [Callback parameters](#callback-parameters)
-     * [Partner parameters](#partner-parameters)
       
 ### Custom Parameters
 
