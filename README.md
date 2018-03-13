@@ -230,13 +230,13 @@ ADJConfig *adjustConfig = [ADJConfig configWithAppToken:yourAppToken
 [Adjust appDidLaunch:adjustConfig];
 ```
 
-### Common issues:
+#### Common issues:
 
-  *[Adjust requires ARC](#ts-arc)
-  *[[UIDevice adjTrackingEnabled]: unrecognized selector sent to instance](#ts-categories)
-  *[Session failed (Ignoring too frequent session.)](#ts-session-failed)
-  *[no "Install Tracked" message](#ts-install-tracked)
-  *[Unattributable SDK click ignored](#ts-iad-sdk-click)
+  * [Adjust requires ARC](#ts-arc)
+  * [[UIDevice adjTrackingEnabled]: unrecognized selector sent to instance](#ts-categories)
+  * [Session failed (Ignoring too frequent session.)](#ts-session-failed)
+  * [no "Install Tracked" message](#ts-install-tracked)
+  * [Unattributable SDK click ignored](#ts-iad-sdk-click)
 
 
 
