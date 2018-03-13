@@ -36,7 +36,7 @@ If your app is an app which uses web views you would like to use adjust tracking
       
 ### Custom Parameters
 
-   * [Custom Parameters](#custom-parameters)
+   * [Event Parameters](#event-parameters)
      * [Event callback parameters](#callback-parameters)
      * [Event partner parameters](#partner-parameters)
    * [Session parameters](#session-parameters)
@@ -435,7 +435,7 @@ If you want to check the validity of In-App Purchases made in your app using Pur
 
 ## Custom Parameters
 
-### <a id="custom-parameters"></a>Custom parameters
+### <a id="event-parameters"></a>Event parameters
 
 In addition to the data points that Adjust collects [by default](https://partners.adjust.com/placeholders/), you can use the Adjust SDK to track and add to the events as many custom values as you need (user IDs, product IDs...). Custom parameters are only available as raw data (i.e., they won't appear in the Adjust dashboard).
 
