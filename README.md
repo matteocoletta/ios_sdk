@@ -15,17 +15,16 @@ If your app is an app which uses web views you would like to use adjust tracking
      * [Integrate the SDK into your app](#sdk-integrate)
      * [Basic setup](#basic-setup)
      * [Adjust logging](#adjust-logging)
+     * [SDK signature](#sdk-signature)
      * [Build your app](#build-the-app)
 
-### Must Have
+### Deep linking
 
-   * [SDK signature](#sdk-signature)
    * [Deep linking](#deeplinking)
      * [Apple Universal Links](#apple-universal-links)
      * [Deep linking on iOS 8 and earlier](#deeplinking-setup-old)
      * [Deferred deep linking scenario](#deeplinking-deferred)
      * [Reattribution via deep links](#deeplinking-reattribution)
-   * [Push token](#push-token)
 
 ### Event Tracking
 
@@ -46,6 +45,7 @@ If your app is an app which uses web views you would like to use adjust tracking
       
 ### Additional Features
      
+   * [Push token (Uninstall/Reinstall)](#push-token)
    * [Attribution callback](#attribution-callback)
    * [User attribution](#user-attribution)
    * [Event and session callbacks](#event-session-callbacks)
@@ -230,6 +230,18 @@ ADJConfig *adjustConfig = [ADJConfig configWithAppToken:yourAppToken
 [Adjust appDidLaunch:adjustConfig];
 ```
 
+### <a id="sdk-signature"></a> SDK signature
+
+The Adjust SDK signature is enabled on a client-by-client basis. If you are interested in using this feature, please contact your account manager.
+
+If the SDK signature has already been enabled on your account and you have access to App Secrets in your Adjust Dashboard, please use the method below to integrate the SDK signature into your app.
+
+An App Secret is set by calling `setAppSecret` on your `AdjustConfig` instance:
+
+```objc
+[adjustConfig setAppSecret:secretId info1:info1 info2:info2 info3:info3 info4:info4];
+```
+
 #### Common issues:
 
   * [Adjust requires ARC](#ts-arc)
@@ -255,19 +267,7 @@ Once you integrate the adjust SDK into your project, you can take advantage of t
 
 
 
-## <a id="must-have"></a>Must have
-
-### <a id="sdk-signature"></a> SDK signature
-
-The Adjust SDK signature is enabled on a client-by-client basis. If you are interested in using this feature, please contact your account manager.
-
-If the SDK signature has already been enabled on your account and you have access to App Secrets in your Adjust Dashboard, please use the method below to integrate the SDK signature into your app.
-
-An App Secret is set by calling `setAppSecret` on your `AdjustConfig` instance:
-
-```objc
-[adjustConfig setAppSecret:secretId info1:info1 info2:info2 info3:info3 info4:info4];
-```
+## <a id="must-have"></a>Deep linking
 
 ### <a id="deeplinking"></a>Deep linking
 
@@ -409,20 +409,6 @@ The call to `appWillOpenUrl` should be done like this to support deep linking re
 ```
 
 #### [Common issues](#ts-reattribution-deeplinks)
-
-### <a id="push-token"></a>Push token
-
-To send us the push notification token, add the following call to `Adjust` in the `didRegisterForRemoteNotificationsWithDeviceToken` of your app delegate:
-
-```objc
-- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    [Adjust setDeviceToken:deviceToken];
-}
-```
-
-Push tokens are used for the Adjust Audience Builder and client callbacks, and are required for the upcoming uninstall tracking feature.
-
-
 
 ## Event Tracking
 
@@ -616,6 +602,19 @@ In this case this will make the adjust SDK not send the initial install session 
 
 
 ## <a id="additional-feature"></a>Additional features
+
+### <a id="push-token"></a>Push token (Uninstall/Reinstall)
+
+To send us the push notification token, add the following call to `Adjust` in the `didRegisterForRemoteNotificationsWithDeviceToken` of your app delegate:
+
+```objc
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    [Adjust setDeviceToken:deviceToken];
+}
+```
+
+Push tokens are used for the Adjust Audience Builder and client callbacks, and are required for the upcoming uninstall tracking feature.
+
 
 ### <a id="attribution-callback"></a>Attribution callback
 
@@ -887,13 +886,13 @@ This error typically occurs when testing installs. Uninstalling and reinstalling
 
 This behaviour can be cumbersome during tests, but is necessary in order to have the sandbox behaviour match production as much as possible.
 
-You can reset the session data of your app for any device directly from the Adjust Dashboard, **provided that you have at least an Editor access to the app**. Under Settings > Testing Console you can paste a valid IDFA to both verify the attribution information of a device, and ask our database to "forget" the device and track a new install whenever you reinstall the app.
+You can reset the session data of your app for any device directly from the Adjust Dashboard, **provided that you have at least an Editor access to the app**. Under Settings > Testing Console you can paste a valid IDFA to both verify the attribution information of a device, and send a "forget device" request to Adjust's database, in order to track a new install whenever you reinstall the app.
 
 ![][testing-console]
 
 When the device is forgotten, the Testing Console just returns `Forgot device`. If the device was already forgotten or the values were incorrect, the link returns `Advertising ID not found`.
 
-If your current package allows it, you can also inspect and forget a device using our [Developer API](https://docs.adjust.com/en/adjust-for-developers/#rest-api-authentication) 
+If your current package allows it, you can also inspect and forget a device using our [Developer API](https://docs.adjust.com/en/adjust-for-developers/#rest-api-authentication).
 
 ### <a id="ts-install-tracked"></a>I'm not seeing "Install tracked" in the logs
 
