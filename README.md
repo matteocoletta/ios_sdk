@@ -45,7 +45,7 @@ If your app is an app which uses web views you would like to use adjust tracking
       
 ### Additional Features
      
-   * [Push token (Uninstall/Reinstall)](#push-token)
+   * [Push token (Uninstall/Reinstall tracking)](#push-token)
    * [Attribution callback](#attribution-callback)
    * [User attribution](#user-attribution)
    * [Event and session callbacks](#event-session-callbacks)
@@ -71,7 +71,7 @@ If your app is an app which uses web views you would like to use adjust tracking
 
 ---
 
-## <a id="early-steps"></a>Early Steps
+## <a id="early-steps"></a>Quick Start
 
 ### <a id="example-apps"></a>Example apps
 
@@ -603,7 +603,7 @@ In this case this will make the adjust SDK not send the initial install session 
 
 ## <a id="additional-feature"></a>Additional features
 
-### <a id="push-token"></a>Push token (Uninstall/Reinstall)
+### <a id="push-token"></a>Push token (Uninstall/Reinstall tracking)
 
 To send us the push notification token, add the following call to `Adjust` in the `didRegisterForRemoteNotificationsWithDeviceToken` of your app delegate:
 
