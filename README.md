@@ -6,7 +6,7 @@ If your app is an app which uses web views you would like to use adjust tracking
 
 ---
 
-### Early Steps
+### Quick Start
 
    * [Example apps](#example-apps)
    * [Getting Started](#getting-started)
