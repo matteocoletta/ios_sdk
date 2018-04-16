@@ -242,16 +242,6 @@ An App Secret is set by calling `setAppSecret` on your `AdjustConfig` instance:
 [adjustConfig setAppSecret:secretId info1:info1 info2:info2 info3:info3 info4:info4];
 ```
 
-#### Common issues:
-
-  * [Adjust requires ARC](#ts-arc)
-  * [[UIDevice adjTrackingEnabled]: unrecognized selector sent to instance](#ts-categories)
-  * [Session failed (Ignoring too frequent session.)](#ts-session-failed)
-  * [no "Install Tracked" message](#ts-install-tracked)
-  * [Unattributable SDK click ignored](#ts-iad-sdk-click)
-
-
-
 ### <a id="build-the-app"></a>Build your app
 
 Build and run your app. If the build succeeds, you should carefully read the SDK logs in the console. After the app launches for the first time, you should see the info log `Install tracked`.
@@ -259,7 +249,13 @@ Build and run your app. If the build succeeds, you should carefully read the SDK
 ![][run]
 
 
-#### [Common issues](#ts-session-tracking)
+#### Common issues:
+
+  * [Adjust requires ARC](#ts-arc)
+  * [[UIDevice adjTrackingEnabled]: unrecognized selector sent to instance](#ts-categories)
+  * [Session failed (Ignoring too frequent session.)](#ts-session-failed)
+  * [no "Install Tracked" message](#ts-install-tracked)
+  * [Unattributable SDK click ignored](#ts-iad-sdk-click)
 
 
 
