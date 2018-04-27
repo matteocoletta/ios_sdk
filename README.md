@@ -263,7 +263,7 @@ Once you integrate the adjust SDK into your project, you can take advantage of t
 
 
 
-## <a id="deep-linking"></a>Deep linking
+## Deep linking
 
 ### <a id="deeplinking"></a>Deep linking
 
