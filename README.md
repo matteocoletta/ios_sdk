@@ -14,7 +14,7 @@ If your app is an app which uses web views you would like to use adjust tracking
      * [Add iOS frameworks](#sdk-frameworks)
      * [Integrate the SDK into your app](#sdk-integrate)
      * [Basic setup](#basic-setup)
-      * [iMessage specific setup](#basic-setup-imessage)
+       * [iMessage specific setup](#basic-setup-imessage)
      * [Adjust logging](#adjust-logging)
      * [SDK signature](#sdk-signature)
      * [Build your app](#build-the-app)
