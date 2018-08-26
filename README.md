@@ -77,11 +77,11 @@ If your app is an app which uses web views you would like to use adjust tracking
 
 ### <a id="example-apps"></a>Example apps
 
-There are example apps inside the [`examples` directory][examples] for [`iOS (Objective-C)`][example-ios-objc], [`iOS (Swift)`][example-ios-swift], [`tvOS`][example-tvos] and [`Apple Watch`][example-iwatch]. You can open any of these Xcode projects to see an example of how the adjust SDK can be integrated.
+There are example apps inside the [`examples` directory][examples] for [`iOS (Objective-C)`][example-ios-objc], [`iOS (Swift)`][example-ios-swift], [`tvOS`][example-tvos], [`iMessage`][example-imessage] and [`Apple Watch`][example-iwatch]. You can open any of these Xcode projects to see an example of how the Adjust SDK can be integrated.
 
 ### <a id="getting-started"></a> Getting Started
 
-We will describe the steps to integrate the adjust SDK into your iOS project. We are going to assume that you are using Xcode for your iOS development.
+We will describe the steps to integrate the Adjust SDK into your iOS project. We are going to assume that you are using Xcode for your iOS development.
 
 ### <a id="sdk-add"></a>Add the SDK to your project
 
@@ -99,8 +99,7 @@ pod 'Adjust', :git => 'https://github.com/adjust/ios_sdk.git', :tag => 'v4.12.3'
 
 ---
 
-If you're using [Carthage][carthage], you can add following line to your `Cartfile` and continue from
-[this step](#sdk-frameworks):
+If you're using [Carthage][carthage], you can add following line to your `Cartfile` and continue from [this step](#sdk-frameworks):
 
 ```ruby
 github "adjust/ios_sdk"
@@ -108,15 +107,18 @@ github "adjust/ios_sdk"
 
 ---
 
-You can also choose to integrate the adjust SDK by adding it to your project as a framework. On the [releases page][releases] you can find the following archives:
+You can also choose to integrate the Adjust SDK by adding it to your project as a framework. On the [releases page][releases] you can find the following archives:
 
 * `AdjustSdkStatic.framework.zip`
 * `AdjustSdkDynamic.framework.zip`
 * `AdjustSdkTv.framework.zip`
+* `AdjustSdkIm.framework.zip`
 
-Since the release of iOS 8, Apple has introduced dynamic frameworks (also known as embedded frameworks). If your app is targeting iOS 8 or higher, you can use the adjust SDK dynamic framework. Choose which framework you want to use – static or dynamic – and add it to your project.
+Since the release of iOS 8, Apple has introduced dynamic frameworks (also known as embedded frameworks). If your app is targeting iOS 8 or higher, you can use the Adjust SDK dynamic framework. Choose which framework you want to use – static or dynamic – and add it to your project.
 
-If you are having `tvOS` app, you can use the adjust SDK with it as well with usage of our tvOS framework which you can extract from `AdjustSdkTv.framework.zip` archive.
+If you are having `tvOS` app, you can use the Adjust SDK with it as well with usage of our tvOS framework which you can extract from `AdjustSdkTv.framework.zip` archive.
+
+If you are having `iMessage` app, you can use the Adjust SDK with it as well with usage of our IM framework which you can extract from `AdjustSdkIm.framework.zip` archive.
 
 ### <a id="sdk-frameworks"></a>Add iOS frameworks
 
@@ -130,7 +132,7 @@ If you are having `tvOS` app, you can use the adjust SDK with it as well with us
 
 ### <a id="sdk-integrate"></a>Integrate the SDK into your app
 
-If you added the adjust SDK via a Pod repository, you should use one of the following import statements:
+If you added the Adjust SDK via a Pod repository, you should use one of the following import statements:
 
 ```objc
 #import "Adjust.h"
@@ -144,7 +146,7 @@ or
 
 ---
 
-If you added the adjust SDK as a static/dynamic framework or via Carthage, you should use the following import statement:
+If you added the Adjust SDK as a static/dynamic framework or via Carthage, you should use the following import statement:
 
 ```objc
 #import <AdjustSdk/Adjust.h>
@@ -152,10 +154,16 @@ If you added the adjust SDK as a static/dynamic framework or via Carthage, you s
 
 ---
 
-If you are are using the adjust SDK with your tvOS app, you should use the following import statement:
+If you are are using the Adjust SDK with your tvOS app, you should use the following import statement:
 
 ```objc
 #import <AdjustSdkTv/Adjust.h>
+```
+
+---
+ If you are are using the Adjust SDK with your iMessage app, you should use the following import statement:
+ ```objc
+#import <AdjustSdkIm/Adjust.h>
 ```
 
 Next, we'll set up basic session tracking.
@@ -169,6 +177,7 @@ In the Project Navigator, open the source file of your application delegate. Add
 // or #import <Adjust/Adjust.h>
 // or #import <AdjustSdk/Adjust.h>
 // or #import <AdjustSdkTv/Adjust.h>
+// or #import <AdjustSdkIm/Adjust.h>
 
 // ...
 
@@ -182,7 +191,7 @@ ADJConfig *adjustConfig = [ADJConfig configWithAppToken:yourAppToken
 
 ![][delegate]
 
-**Note**: Initialising the adjust SDK like this is `very important`. Otherwise, you may encounter different kinds of issues as described in our [troubleshooting section](#ts-delayed-init).
+**Note**: Initialising the Adjust SDK like this is `very important`. Otherwise, you may encounter different kinds of issues as described in our [troubleshooting section](#ts-delayed-init).
 
 Replace `{YourAppToken}` with your app token. You can find this in your [dashboard].
 
@@ -197,7 +206,34 @@ NSString *environment = ADJEnvironmentProduction;
 
 We use this environment to distinguish between real traffic and test traffic from test devices. It is very important that you keep this value meaningful at all times! This is especially important if you are tracking revenue.
 
+### <a id="basic-setup-imessage"></a>iMessage specific setup
 
+ **Adding SDK from source:** In case that you have chosen to add Adjust SDK to your iMessage app **from source**, please make sure that you have pre-processor macro **ADJUST_IM=1** set in your iMessage project settings.
+ **Adding SDK as framework:** After you have added `AdjustSdkIm.framework` to your iMessage app, please make sure to add `New Copy Files Phase` in your `Build Phases` project settings and select that `AdjustSdkIm.framework` should be copied to `Frameworks` folder.
+ **Session tracking:** If you would like to have session tracking properly working in your iMessage app, you will need to do one additional integration step. In standard iOS apps Adjust SDK is automatically subscribed to iOS system notifications which enable us to know when app entered or left foreground. In case of iMessage app, this is not the case, so we need you to add explicit calls to `trackSubsessionStart` and `trackSubsessionEnd` methods inside of your iMessage app view controller to make our SDK aware of the moments when your app is being in foreground or not.
+ Add call to `trackSubsessionStart` inside of `didBecomeActiveWithConversation:` method:
+ ```objc
+-(void)didBecomeActiveWithConversation:(MSConversation *)conversation {
+    // Called when the extension is about to move from the inactive to active state.
+    // This will happen when the extension is about to present UI.
+    // Use this method to configure the extension and restore previously stored state.
+     [Adjust trackSubsessionStart];
+}
+```
+ Add call to `trackSubsessionEnd` inside of `willResignActiveWithConversation:` method:
+ ```objc
+-(void)willResignActiveWithConversation:(MSConversation *)conversation {
+    // Called when the extension is about to move from the active to inactive state.
+    // This will happen when the user dissmises the extension, changes to a different
+    // conversation or quits Messages.
+    
+    // Use this method to release shared resources, save user data, invalidate timers,
+    // and store enough state information to restore your extension to its current state
+    // in case it is terminated later.
+     [Adjust trackSubsessionEnd];
+}
+```
+ With this set, Adjust SDK will be able to successfully perform session tracking inside of your iMessage app.
 
 ### <a id="adjust-logging"></a>Adjust logging
 
