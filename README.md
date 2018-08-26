@@ -57,6 +57,7 @@ If your app is an app which uses web views you would like to use adjust tracking
    * [Background tracking](#background-tracking)
    * [Offline mode](#offline-mode)
    * [Disable tracking](#disable-tracking)
+   * [GDPR right to be forgotten](#gdpr-forget-me)
 
 ### Testing and Troubleshooting
 
@@ -805,6 +806,14 @@ You can disable the adjust SDK from tracking any activities of the current devic
 ```
 
 <a id="is-enabled">You can check if the adjust SDK is currently enabled by calling the function `isEnabled`. It is always possible to activate the adjust SDK by invoking `setEnabled` with the enabled parameter as `YES`.
+  
+### <a id="gdpr-forget-me"></a>GDPR right to be forgotten
+ In accordance with article 17 of the EU's General Data Protection Regulation (GDPR), you can notify Adjust when a user has exercised their right to be forgotten. Calling the following method will instruct the Adjust SDK to communicate the user's choice to be forgotten to the Adjust backend:
+ ```objc
+[Adjust gdprForgetMe];
+```
+ Upon receiving this information, Adjust will erase the user's data and the Adjust SDK will stop tracking the user. No requests from this device will be sent to Adjust in the future.
+
 
 #### [Common issues](#ts-offline-disable)
   
