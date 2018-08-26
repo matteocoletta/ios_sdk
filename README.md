@@ -234,6 +234,9 @@ We use this environment to distinguish between real traffic and test traffic fro
 }
 ```
  With this set, Adjust SDK will be able to successfully perform session tracking inside of your iMessage app.
+ 
+ **Note:** You should be aware that your iOS app and iMessage extension you wrote for it are running in different memory spaces and they as well have different bundle identifiers. Initialising Adjust SDK with same app token in both places will result in two independent instances tracking things unaware of each other which might cause data mixture you don't want to see in your dashboard data. General advice would be to create separate app in Adjust dashboard for your iMessage app and initialise SDK inside of it with separate app token.
+
 
 ### <a id="adjust-logging"></a>Adjust logging
 
