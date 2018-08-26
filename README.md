@@ -840,7 +840,7 @@ Unlike disabling tracking, this setting is **not remembered** bettween sessions.
 
 ### <a id="disable-tracking"></a>Disable tracking
 
-You can disable the Adjust SDK from tracking any activities of the current device by calling `setEnabled` with parameter `NO`. **This setting is remembered between sessions**, but it can only be activated after the first session.
+You can disable the Adjust SDK from tracking any activities of the current device by calling `setEnabled` with parameter `NO`. **This setting is remembered between sessions**.
 
 ```objc
 [Adjust setEnabled:NO];
