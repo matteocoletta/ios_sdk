@@ -1,6 +1,6 @@
 ## Summary
 
-This is the iOS SDK of adjust™. You can read more about adjust™ at [adjust.com].
+This is the iOS SDK of Adjust™. You can read more about Adjust™ at [adjust.com].
 
 If your app is an app which uses web views you would like to use adjust tracking from Javascript code, please consult our [iOS web views SDK guide][ios-web-views-guide].
 
