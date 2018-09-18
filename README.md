@@ -50,6 +50,7 @@ If your app is an app which uses web views you would like to use Adjust tracking
    * [Attribution callback](#attribution-callback)
    * [User attribution](#user-attribution)
    * [Event and session callbacks](#event-session-callbacks)
+   * [Callback identifier](#callback-id)
    * [Device IDs](#device-ids)
      * [iOS Advertising Identifier](#di-idfa)
      * [Adjust device identifier](#di-adid)
@@ -90,13 +91,13 @@ We will describe the steps to integrate the Adjust SDK into your iOS project. We
 If you're using [CocoaPods][cocoapods], you can add the following line to your `Podfile` and continue from [this step](#sdk-integrate):
 
 ```ruby
-pod 'Adjust', '~> 4.14.4'
+pod 'Adjust', '~> 4.15.0'
 ```
 
 or:
 
 ```ruby
-pod 'Adjust', :git => 'https://github.com/adjust/ios_sdk.git', :tag => 'v4.14.4'
+pod 'Adjust', :git => 'https://github.com/adjust/ios_sdk.git', :tag => 'v4.15.0'
 ```
 
 ---
@@ -748,12 +749,21 @@ The delegate functions will be called after the SDK tries to send a package to t
 Both event response data objects contain:
 
 - `NSString eventToken` the event token, if the package tracked was an event.
+- `NSString callbackid` the custom defined callback ID set on event object.
 
 If any value is unavailable, it will default to `nil`.
 
 And both event and session failed objects also contain:
 
 - `BOOL willRetry` indicates that there will be an attempt to resend the package at a later time.
+
+### <a id="callback-id"></a>Callback identifier
+ You can also add custom string identifier to each event you want to track. This identifier will later be reported in event success and/or event failure callbacks to enable you to keep track on which event was successfully tracked or not. You can set this identifier by calling the `setCallbackId` method on your `ADJEvent` instance:
+ ```objc
+ADJEvent *event = [ADJEvent eventWithEventToken:@"abc123"];
+ [event setCallbackId:@"Your-Custom-Id"];
+ [Adjust trackEvent:event];
+```
 
 ### <a id="device-ids"></a>Device IDs
 
@@ -959,7 +969,7 @@ You may notice this message while testing your app in `sandbox` envoronment. It 
 ```
 [Adjust]d: Added package 1 (click)
 [Adjust]v: Path:      /sdk_click
-[Adjust]v: ClientSdk: ios4.14.4
+[Adjust]v: ClientSdk: ios4.15.0
 [Adjust]v: Parameters:
 [Adjust]v:      app_token              {YourAppToken}
 [Adjust]v:      created_at             2016-04-15T14:25:51.676Z+0200
