@@ -73,7 +73,6 @@ If your app is an app which uses web views you would like to use Adjust tracking
    * [I'm seeing "Unattributable SDK click ignored" message](#ts-iad-sdk-click)
    * [I'm seeing wrong revenue data in the Adjust dashboard](#ts-wrong-revenue-amount)
 
-
 ---
 
 ## <a id="early-steps"></a>Quick Start
