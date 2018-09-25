@@ -60,8 +60,6 @@ If your app is an app which uses web views you would like to use Adjust tracking
    * [Offline mode](#offline-mode)
    * [Disable tracking](#disable-tracking)
    * [GDPR right to be forgotten](#gdpr-forget-me)
-   
-### [License](#license)
 
 ### Testing and Troubleshooting
 
@@ -72,6 +70,8 @@ If your app is an app which uses web views you would like to use Adjust tracking
    * [I'm not seeing "Install tracked" in the logs](#ts-install-tracked)
    * [I'm seeing "Unattributable SDK click ignored" message](#ts-iad-sdk-click)
    * [I'm seeing wrong revenue data in the Adjust dashboard](#ts-wrong-revenue-amount)
+   
+### [License](#license)
 
 ---
 
